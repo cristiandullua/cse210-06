@@ -2,7 +2,7 @@ import random
 
 class SecretWord:
     def __init__(self):
-        self._word_list=['david','ernesto','benjamin','samuel','gerardo']
+        self._word_list=['apple','notebook','book','netflix','pen','eraser','pencil','banana','watermelon','soup','soap','table','sun','tomato','chair','dog','cat','horse','pool','beach','summer','water','sunglasses']
         self._word=''
         self._guess=''
 
