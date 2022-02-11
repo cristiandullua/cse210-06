@@ -61,3 +61,6 @@ class Director:
         """
         if self._secretWord.check_word_guess():
             self._isPlaying = False
+            print()
+            print('Congratulations! You survived!')
+            print()
