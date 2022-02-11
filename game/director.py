@@ -31,7 +31,7 @@ class Director:
         while self._is_playing:
             self._get_inputs()
             self._do_updates()
-            self._do_outputs()
+            self._do_outputs()            
 
     def _get_inputs(self):
         """Moves the seeker to a new location.
@@ -52,6 +52,7 @@ class Director:
         
         if self._secretWord.new_letter_guessed(letterGuess)  ==  False:
             self._parachute.delete_line()
+           
 
     def _do_outputs(self):
         """Provides a hint for the seeker to use.

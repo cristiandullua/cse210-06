@@ -1,5 +1,9 @@
+from email import message
+
+
 class Parachute:
     def __init__(self):
+        
         self._parachute = [' ___ ',
                           '/___\\',
                           '\\   /',
@@ -8,10 +12,11 @@ class Parachute:
                           ' /|\\',
                           ' / \\'
                           ]
-
+        
     # Delete first line of the parachute
-    def delete_line(self):
+    def delete_line(self):                   
         self._parachute.pop(0)
+     
 
     # Print parachute
     def display(self):

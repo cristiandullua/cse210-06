@@ -24,13 +24,12 @@ class SecretWord:
 
     def check_word_guess(self):
         if self._word == self._guess:
-            return True
+            return True            
     
     def new_letter_guessed(self, letter):
         # Create list with positions of the letters if found
-        letterPositions=[pos for pos, char in enumerate(self._word) if char == letter]
-        
-        print(letterPositions)
+        letterPositions=[pos for pos, char in enumerate(self._word) if char == letter]        
+       
         # If list is not empty means there are letters to reveal
         if letterPositions:
             temp = list(self._guess)
