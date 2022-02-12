@@ -38,5 +38,4 @@ class Parachute:
             print(i)
         print('^^^^^^^')
     
-    def is_alive(self):
-        return self._alive
+  
