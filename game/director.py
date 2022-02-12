@@ -39,14 +39,17 @@ class Director:
         Args:
             self (Director): An instance of Director.
         """
-       
         # Display the blanks and guessed letters / adding spacing between characters
-        self._terminalService.write_text(" ".join(self._secretWord.display_guess()))
         print()
-
+        self._terminalService.write_text(" ".join(self._secretWord.display_guess()))
+        
         # Display the current state of the parachute
+        print()
         self._parachute.display()
         
+        if self._parachute.get_hint():
+            self._terminalService.write_text(self._parachute.get_hint())  
+
 
     def _do_updates(self):
         """Keeps watch on where the seeker is moving.
@@ -54,15 +57,16 @@ class Director:
         Args:
             self (Director): An instance of Director.
         """
-
-        hint = self._parachute.get_hint()        
-        letterGuess = self._terminalService.read_text("Guess a letter [a-z]: ")
-        
-        if self._secretWord.new_letter_guessed(letterGuess)  ==  False:
-            self._parachute.delete_line()
-        
-        self._terminalService.write_text(hint)  
-
+        # If the parachute still has lives continue / Otherwise signal game to stop
+        # we do this at this point to allow the display functions above to show the results
+        if self._parachute.is_alive():
+            print()
+            letterGuess = self._terminalService.read_text("Guess a letter [a-z]: ")
+            
+            if self._secretWord.new_letter_guessed(letterGuess)  ==  False:
+                self._parachute.delete_line()
+        else:
+            self._isPlaying = False
         
             
     def _do_outputs(self):
@@ -72,7 +76,8 @@ class Director:
             self (Director): An instance of Director.
         """
 
-        if self._secretWord.check_word_guess() or self._parachute.lost_parachute():
+        if self._secretWord.check_word_guess():
             self._isPlaying = False
             print()
+            print(self._secretWord.display_guess().upper() + ' is the word!')
             print('Game is Over. Well played!')
