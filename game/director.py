@@ -41,6 +41,7 @@ class Director:
         """
         self._secretWord.display_guess()
         self._parachute.display()
+        
 
     def _do_updates(self):
         """Keeps watch on where the seeker is moving.
@@ -48,11 +49,13 @@ class Director:
         Args:
             self (Director): An instance of Director.
         """
+        hint = self._parachute.get_hint()        
         letterGuess = self._terminalService.read_text("Guess a letter [a-z]: ")
         
         if self._secretWord.new_letter_guessed(letterGuess)  ==  False:
             self._parachute.delete_line()
-           
+        
+        self._terminalService.write_text(hint)  
 
     def _do_outputs(self):
         """Provides a hint for the seeker to use.
@@ -60,8 +63,8 @@ class Director:
         Args:
             self (Director): An instance of Director.
         """
-        if self._secretWord.check_word_guess():
-            self._isPlaying = False
+        if self._secretWord.check_word_guess() or self._parachute.lost_parachute():
+            self._is_playing = False
             print()
-            print('Congratulations! You survived!')
+            print('Game is Over. Well played!')
             print()

@@ -3,7 +3,7 @@ from email import message
 
 class Parachute:
     def __init__(self):
-        
+        self._counter = 0
         self._parachute = [' ___ ',
                           '/___\\',
                           '\\   /',
@@ -14,10 +14,24 @@ class Parachute:
                           ]
         
     # Delete first line of the parachute
-    def delete_line(self):                   
+    def delete_line(self):
         self._parachute.pop(0)
-     
+        self._counter += 1
+    
+    def get_hint(self):
+        hint = " "
+        if  self._counter > 0 and self._counter < 2: 
+            hint = "Ups! I looks like your parachute is in trouble!"
+        elif  self._counter == 3: 
+            hint = "Be carefull jumper, you can lose your parachute" 
+        elif  self._counter == 5: 
+            hint = "No parachute. You lose!"
+        return hint  
+                           
+    def lost_parachute(self):
+        return self._counter == 5 
 
+    
     # Print parachute
     def display(self):
         print()
