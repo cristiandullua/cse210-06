@@ -27,11 +27,12 @@ class Parachute:
         hint = ''
         if  self._counter > 0 and self._counter < 2: 
             hint = 'Ups! It looks like your parachute is in trouble!'
+        elif self._counter > 1 and self._counter < 3:
+            hint = 'You are losing your parachute! Try again!'
         elif  self._counter > 2 and self._counter < 4: 
             hint = 'Be carefull jumper, you can lose your parachute!' 
         elif  self._counter == 4: 
-            hint = 'No parachute. You lose!'
-        return hint  
+            hint = 'No parachute. You lose!'  
 
     def lost_parachute(self):
         return self._counter == 5 
