@@ -16,7 +16,7 @@ class Director:
         Args:
             self (Director): an instance of Director.
         """
-        self._is_playing = True    
+        self._isPlaying = True    
 
         self._terminalService = TerminalService()
         self._secretWord = SecretWord()
@@ -28,11 +28,11 @@ class Director:
         Args:
             self (Director): an instance of Director.
         """
-        while self._is_playing:
+        while self._isPlaying:
             self._get_inputs()
             self._do_updates()
-            self._do_outputs()            
-
+            self._do_outputs()
+  
     def _get_inputs(self):
         """Moves the seeker to a new location.
 
@@ -63,5 +63,6 @@ class Director:
         if self._secretWord.check_word_guess():
             self._isPlaying = False
             print()
+            self._secretWord.display_guess()
             print('Congratulations! You survived!')
             print()
