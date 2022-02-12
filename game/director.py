@@ -28,10 +28,13 @@ class Director:
         Args:
             self (Director): an instance of Director.
         """
+        print()
+        self._terminalService.write_text("*** Welcome. Your parachute is ready to jump! ***")
         while self._isPlaying:
             self._get_inputs()
             self._do_updates()
             self._do_outputs()
+        
   
     def _get_inputs(self):
         """Moves the seeker to a new location.
@@ -40,7 +43,7 @@ class Director:
             self (Director): An instance of Director.
         """
         # Display the blanks and guessed letters / adding spacing between characters
-        print()
+        
         self._terminalService.write_text(" ".join(self._secretWord.display_guess()))
         
         # Display the current state of the parachute
@@ -59,10 +62,13 @@ class Director:
         """
         # If the parachute still has lives continue / Otherwise signal game to stop
         # we do this at this point to allow the display functions above to show the results
-        if self._parachute.is_alive():
+        
+        if not self._parachute.lost_parachute():
             print()
             letterGuess = self._terminalService.read_text("Guess a letter [a-z]: ")
-            
+            message = self._secretWord.check_imp(letterGuess)
+            print()
+            self._terminalService.write_text(message)
             if self._secretWord.new_letter_guessed(letterGuess)  ==  False:
                 self._parachute.delete_line()
         else:

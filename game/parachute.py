@@ -1,6 +1,5 @@
 class Parachute:
-    def __init__(self):
-        self._alive = True
+    def __init__(self):        
         self._counter = 0
         self._parachute = ['  ___ ',
                           ' /___\\',
@@ -15,9 +14,7 @@ class Parachute:
     def delete_line(self):
         self._parachute.pop(0)
         self._counter += 1
-
-        if '0' in self._parachute[0]:
-            self._alive = False
+        if self._counter == 4:
             self._parachute[0] = self._parachute[0].replace('0', 'x')
        
     def get_hint(self):
@@ -31,9 +28,9 @@ class Parachute:
         elif  self._counter == 4: 
             hint = 'No parachute. You lose!'  
         return hint
-
+    
     def lost_parachute(self):
-        return self._counter == 5 
+        return self._counter == 4 
     
     # Print parachute
     def display(self):
