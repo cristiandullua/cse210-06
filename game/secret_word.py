@@ -20,10 +20,13 @@ class SecretWord:
             self._guess+='_'
     
     def display_guess(self):
-        print(*self._guess)
+        return self._guess
+    
+    def display_word(self):
+        return self._word
 
     def check_word_guess(self):
-        return self._word == self._guess                       
+        return self._word == self._guess                     
     
     def new_letter_guessed(self, letter):
         # Create list with positions of the letters if found

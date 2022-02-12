@@ -1,6 +1,5 @@
 from email import message
 
-
 class Parachute:
     def __init__(self):
         self._counter = 0
@@ -22,15 +21,14 @@ class Parachute:
         hint = " "
         if  self._counter > 0 and self._counter < 2: 
             hint = "Ups! I looks like your parachute is in trouble!"
-        elif  self._counter == 3: 
-            hint = "Be carefull jumper, you can lose your parachute" 
-        elif  self._counter == 5: 
+        elif  self._counter > 2 and self._counter < 4: 
+            hint = "Be carefull jumper, you can lose your parachute!" 
+        elif  self._counter == 4: 
             hint = "No parachute. You lose!"
         return hint  
                            
     def lost_parachute(self):
         return self._counter == 5 
-
     
     # Print parachute
     def display(self):

@@ -16,7 +16,7 @@ class Director:
         Args:
             self (Director): an instance of Director.
         """
-        self._is_playing = True    
+        self._isPlaying = True   
 
         self._terminalService = TerminalService()
         self._secretWord = SecretWord()
@@ -28,18 +28,23 @@ class Director:
         Args:
             self (Director): an instance of Director.
         """
-        while self._is_playing:
+        while self._isPlaying:
             self._get_inputs()
             self._do_updates()
-            self._do_outputs()            
-
+            self._do_outputs()
+  
     def _get_inputs(self):
         """Moves the seeker to a new location.
 
         Args:
             self (Director): An instance of Director.
         """
-        self._secretWord.display_guess()
+       
+        # Display the blanks and guessed letters / adding spacing between characters
+        self._terminalService.write_text(" ".join(self._secretWord.display_guess()))
+        print()
+
+        # Display the current state of the parachute
         self._parachute.display()
         
 
@@ -49,6 +54,7 @@ class Director:
         Args:
             self (Director): An instance of Director.
         """
+
         hint = self._parachute.get_hint()        
         letterGuess = self._terminalService.read_text("Guess a letter [a-z]: ")
         
@@ -57,14 +63,16 @@ class Director:
         
         self._terminalService.write_text(hint)  
 
+        
+            
     def _do_outputs(self):
         """Provides a hint for the seeker to use.
 
         Args:
             self (Director): An instance of Director.
         """
+
         if self._secretWord.check_word_guess() or self._parachute.lost_parachute():
-            self._is_playing = False
+            self._isPlaying = False
             print()
             print('Game is Over. Well played!')
-            print()
