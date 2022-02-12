@@ -20,7 +20,10 @@ class SecretWord:
             self._guess+='_'
     
     def display_guess(self):
-        print(*self._guess)
+        return self._guess
+    
+    def display_word(self):
+        return self._word
 
     def check_word_guess(self):
         return self._word == self._guess                     
