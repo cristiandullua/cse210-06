@@ -30,7 +30,7 @@ class SecretWord:
 
     def check_imp(self, letter):
         message = ''        
-        if  not letter.isalpha():
+        if not letter.isalpha():
             message = 'Your input should be a letter' 
         elif letter.lower() in self._guess:
             message = "You have already enter this letter"       
@@ -41,7 +41,6 @@ class SecretWord:
     
     def new_letter_guessed(self, letter):
         # Create list with positions of the letters if found
-
         letterPositions=[pos for pos, char in enumerate(self._word) if char == letter.lower()]        
        
         # If list is not empty means there are letters to reveal
